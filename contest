@@ -1,0 +1,2 @@
+#!/bin/sh
+python3 "${BASH_SOURCE%/*}/main.py" "$@"
