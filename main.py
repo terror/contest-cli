@@ -89,7 +89,7 @@ def get_length(items):
     mx = 0
     for i in items.json():
         for key, val in i.items():
-            mx = max(len(val), mx)
+            mx = max(len(str(val)), mx)
     return mx
 
 
@@ -102,6 +102,10 @@ def convert_date(date_to_convert):
     year = int(date_to_convert[0:4])
     month = 0 + int(date_to_convert[6:7])
     day = 0 + int(date_to_convert[8:10])
+
+    # temp fix
+    while month < 1:
+        month += 1
 
     converted_date = days[date(year, month, day).weekday(
     )] + " " + months[month-1] + " " + str(day) + ", " + str(year)
