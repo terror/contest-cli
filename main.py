@@ -1,6 +1,6 @@
 import requests
 import argparse
-from datetime import datetime
+from datetime import datetime, date
 
 
 def main():
@@ -14,6 +14,7 @@ def main():
     sites = {
         'leetcode': 'leet_code',
         'codeforcesgym': 'codeforces_gym',
+        'codeforces': 'codeforces',
         'topcoder': 'top_coder',
         'atcoder': 'at_coder',
         'codechef': 'code_chef',
@@ -27,44 +28,52 @@ def main():
     if args.site:
         if args.site.lower() in sites:
             args.site = sites[args.site]
-        get_info(args.site)
+            url = 'https://kontests.net/api/v1/{}'.format(args.site)
+        get_info(args.site, url)
     if args.list:
         get_sites()
 
 
-def get_info(site):
-    res, site = requests.get('https://kontests.net/api/v1/{}'.format(site)
-                             ), ''.join([i for i in site if i.isalpha()])
-    count, i, length = 0, len(res.json())-1, int(get_length(res)*1.5)
+def get_info(site, url):
+    try:
+        res, site = requests.get(url), ''.join(
+            [i for i in site if i.isalpha()])
+        count, i, length = 0, len(res.json())-1, int(get_length(res)*1.5)
 
-    # Separators
-    sep_hash, sep_dash, sep_title = "#"*length, "-"*length, "-"*(length//3)
+        # Separators
+        sep_hash, sep_dash, sep_title = "#"*length, "-"*length, "-"*(length//3)
 
-    # Title
-    print("{} {} {} ".format(sep_title, site.upper(), sep_title))
+        # Title
+        print("{} {} {} ".format(sep_title, site.upper(), sep_title))
 
-    for item in res.json():
-        if count % 2 == 0:
-            print(sep_hash)
-        print("Contest name: ", item["name"])
+        for item in res.json():
+            if count % 2 == 0:
+                print(sep_hash)
+            print("Contest name: ", item["name"])
 
-        # Start / End
-        start_date = item["start_time"][0:10]
-        start_time = item["start_time"][12:16]
-        end_date = item["end_time"][0:10]
-        end_time = item["end_time"][12:16]
+            # Start & End info
+            start_date = str(datetime.fromisoformat(item["start_time"][:-1]))
+            end_date = str(datetime.fromisoformat(item["end_time"][:-1]))
 
-        print("Register: ", item["url"])
-        print("Start date: ", start_date, "Start time: ", start_time)
-        print("End date: ", end_date, "End time: ", end_time)
-        print("Duration: ", float(item["duration"])//3600, "Hours")
-        if count == i and count % 2 != 0:
-            print(sep_hash)
-        if count % 2 == 0:
-            print(sep_hash)
+            # Convert dates
+            start_date_converted = convert_date(start_date[0:10])
+            end_date_converted = convert_date(end_date[0:10])
 
-        count += 1
-    print(sep_dash)
+            print("Register: ", item["url"])
+            print("Start date: ", start_date_converted,
+                  "Start time: ", start_date[11:19])
+            print("End date: ", end_date_converted,
+                  "End time: ", end_date[11:19])
+            print("Duration: ", float(item["duration"])//3600, "Hours")
+            if count == i and count % 2 != 0:
+                print(sep_hash)
+            if count % 2 == 0:
+                print(sep_hash)
+
+            count += 1
+        print(sep_dash)
+    except requests.exceptions.RequestException as e:
+        raise System.Exit(e)
 
 
 def get_sites():
@@ -82,6 +91,21 @@ def get_length(items):
         for key, val in i.items():
             mx = max(len(val), mx)
     return mx
+
+
+def convert_date(date_to_convert):
+    days = ['Monday', 'Tuesday', 'Wednesday',
+            'Thursday', 'Friday', 'Saturday', 'Sunday']
+    months = ['January', 'February', 'March', 'April', 'May', 'June',
+              'July', 'August', 'September', 'October', 'November', 'December']
+
+    year = int(date_to_convert[0:4])
+    month = 0 + int(date_to_convert[6:7])
+    day = 0 + int(date_to_convert[8:10])
+
+    converted_date = days[date(year, month, day).weekday(
+    )] + " " + months[month-1] + " " + str(day) + ", " + str(year)
+    return converted_date
 
 
 if __name__ == '__main__':
