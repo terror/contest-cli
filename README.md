@@ -1,12 +1,12 @@
-# Contest
+# contest-cli
 
 Command line utility for viewing information about competitive programming contests
 
-# Commands
+# Arguments
 
--h (view list of available command)
--s / --site (contest site to view information about)
--l / --list (list of all supported contest sites)
+-h (view list of available command)  
+-s / --site (contest site to view information about)  
+-l / --list (list of all supported contest sites)  
 
 # Installation
 
@@ -18,9 +18,10 @@ To run this as a command, add `contest-cli` to your `$PATH` variable within your
 
 # Development
 
-Fork the repo
-`git clone` your fork
-`python3 main.py`
+Fork the repo  
+`git clone` your fork  
+```pip3 install -r requirements.txt```  
+`python3 main.py`  
 
 # Licence
 
