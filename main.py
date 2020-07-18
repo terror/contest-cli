@@ -27,7 +27,7 @@ def main():
     args = parser.parse_args()
     if args.site:
         if args.site.lower() in sites:
-            args.site = sites[args.site]
+            args.site = sites[args.site.lower()]
             url = 'https://kontests.net/api/v1/{}'.format(args.site)
         get_info(args.site, url)
     if args.list:
