@@ -64,13 +64,15 @@ def get_info(site, url):
                   "Start time: ", start_date[11:19])
             print("End date: ", end_date_converted,
                   "End time: ", end_date[11:19])
-            print("Duration: ", float(item["duration"])//3600, "Hours")
+            print("Duration: ", round(
+                float(item["duration"])/3600, 1), "Hours")
+
             if count == i and count % 2 != 0:
                 print(sep_hash)
             if count % 2 == 0:
                 print(sep_hash)
-
             count += 1
+
         print(sep_dash)
     except requests.exceptions.RequestException as e:
         raise System.Exit(e)
