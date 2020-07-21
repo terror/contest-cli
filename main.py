@@ -4,8 +4,7 @@ import requests
 import sys
 
 # import utils
-sys.path.append('./utils')
-from get_max_length import get_max_length
+from utils import get_max_length
 
 
 
