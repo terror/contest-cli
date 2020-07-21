@@ -39,6 +39,7 @@ def get_info(site, url):
         res, site = requests.get(url), ''.join(
             [i for i in site if i.isalpha()])
         count, i, length = 0, len(res.json())-1, int(get_length(res)*1.5)
+        print(length)
 
         # Separators
         sep_hash, sep_dash, sep_title = "#"*length, "-"*length, "-"*(length//3)
@@ -92,6 +93,7 @@ def get_length(items):
     for i in items.json():
         for key, val in i.items():
             mx = max(len(str(val)), mx)
+    mx = min(mx, 60)
     return mx
 
 
