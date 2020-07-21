@@ -1,6 +1,12 @@
-import requests
-import argparse
 from datetime import datetime, date
+import argparse
+import requests
+import sys
+
+# import utils
+sys.path.append('./utils')
+from get_max_length import get_max_length
+
 
 
 def main():
@@ -38,8 +44,7 @@ def get_info(site, url):
     try:
         res, site = requests.get(url), ''.join(
             [i for i in site if i.isalpha()])
-        count, i, length = 0, len(res.json())-1, int(get_length(res)*1.5)
-        print(length)
+        count, i, length = 0, len(res.json())-1, int(get_max_length(res)*1.5)
 
         # Separators
         sep_hash, sep_dash, sep_title = "#"*length, "-"*length, "-"*(length//3)
@@ -86,15 +91,6 @@ def get_sites():
     for item in res.json():
         print(item[0])
     print("---------------------------")
-
-
-def get_length(items):
-    mx = 0
-    for i in items.json():
-        for key, val in i.items():
-            mx = max(len(str(val)), mx)
-    mx = min(mx, 60)
-    return mx
 
 
 def convert_date(date_to_convert):
