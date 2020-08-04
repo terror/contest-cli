@@ -10,7 +10,8 @@ Command line utility for viewing information about competitive programming conte
 
 # Installation
 
-Run `git clone https://github.com/terror/contest-cli` to clone the repository. To run, `cd` into the contest-cli directory and run `python3 main.py [args]`.
+Run `git clone https://github.com/terror/contest-cli` to clone the repository.   
+To run, `cd` into the contest-cli directory and run `python3 main.py [args]`.
 
 ## MacOS/Linux
 
