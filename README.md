@@ -2,6 +2,8 @@
 
 Command line utility for viewing information about competitive programming contests
 
+![](demo/demo.png)
+
 # Arguments
 
 -h (view list of available command)  
