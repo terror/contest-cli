@@ -2,7 +2,7 @@
 
 Command line utility for viewing information about competitive programming contests
 
-![](demo/demo.png)
+![](demo/demo.gif)
 
 # Arguments
 
