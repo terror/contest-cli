@@ -3,6 +3,7 @@ import requests
 from datetime import datetime, date
 from utils import get_max_length, convert_date
 
+
 def main():
     parser = argparse.ArgumentParser()
 
@@ -27,15 +28,21 @@ def main():
 
     # Parse Args
     args = parser.parse_args()
+
     if args.site:
-        if args.site.lower() in sites:
+        try:
             args.site = sites[args.site.lower()]
             url = 'https://kontests.net/api/v1/{}'.format(args.site)
-        get_info(args.site, url)
+            get_info(args.site, url)
+        except Exception as err:
+            print("Invalid site name! Msg:", repr(err))
+
     if args.list:
         get_sites()
 
 # Fetches and prints all useful contest information
+
+
 def get_info(site, url):
     try:
         res, site = requests.get(url), ''.join(
@@ -70,7 +77,8 @@ def get_info(site, url):
                 float(item["duration"])/3600, 1), "Hours")
 
             # Print Separators
-            print("{}\n".format(sep_hash) if count == i and count % 2 != 0 else "", end="")
+            print("{}\n".format(sep_hash) if count ==
+                  i and count % 2 != 0 else "", end="")
             print("{}\n".format(sep_hash) if count % 2 == 0 else "", end="")
             count += 1
 
@@ -79,12 +87,15 @@ def get_info(site, url):
         raise System.Exit(e)
 
 # Gets list of supported sites
+
+
 def get_sites():
     res = requests.get("https://kontests.net/api/v1/sites")
     print("{}\n{}".format("Supported Sites:", "-"*30))
     for item in res.json():
         print(item[0])
     print("-"*30)
+
 
 if __name__ == '__main__':
     main()
