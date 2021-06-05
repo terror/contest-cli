@@ -1,0 +1,18 @@
+[[source]]
+url        = "https://pypi.org/simple"
+verify_ssl = true
+name       = "pypi"
+
+[packages]
+click       = "*"
+contest-cli = {editable = true, path = "."}
+requests    = "*"
+
+[dev-packages]
+black  = "*"
+pylint = "*"
+pytest = "*"
+twine  = "*"
+
+[requires]
+python_version = "3.8"

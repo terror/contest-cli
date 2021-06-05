@@ -1,31 +1,25 @@
-# contest-cli
+## <p align='center'>contest-cli</p>
 
-Command line utility for viewing information about competitive programming contests
+<p align='center'>A command line utility for viewing information about upcoming competitive programming contests</p>
 
-![](demo/demo.gif)
+## Demo
+[![asciicast](https://asciinema.org/a/VrB0t8M4knRjVfEr4lUPf8oSv.svg)](https://asciinema.org/a/VrB0t8M4knRjVfEr4lUPf8oSv)
 
-# Arguments
+## Installation
 
--h (view list of available command)  
--s / --site (contest site to view information about)  
--l / --list (list of all supported contest sites)  
+You can install contest-cli by using pip:
 
-# Installation
+```bash
+$ pip install contest-cli
+```
 
-Run `git clone https://github.com/terror/contest-cli` to clone the repository.   
-To run, `cd` into the contest-cli directory and run `python3 main.py [args]`.
+## Usage
 
-## MacOS/Linux
+```
+usage: main.py [-h] [-s SITE] [-l]
 
-To run this as a command, add `contest-cli` to your `$PATH` variable within your `~/.bash_profile`, admin privileges required. After that you can run `contest` from anywhere!
-
-# Development
-
-Fork the repo  
-`git clone` your fork  
-```pip3 install -r requirements.txt```  
-`python3 main.py`  
-
-# Licence
-
-MIT
+optional arguments:
+  -h, --help            show this help message and exit
+  -s SITE, --site SITE  Contest site
+  -l, --list            Contest site list
+```
