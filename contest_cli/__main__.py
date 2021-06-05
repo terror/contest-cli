@@ -1,3 +1,6 @@
+"""entry point"""
+# pylint: disable=no-value-for-parameter
+
 from contest_cli.cli import cli
 
 

@@ -16,3 +16,7 @@ twine  = "*"
 
 [requires]
 python_version = "3.8"
+
+[scripts]
+lint = "pylint contest_cli"
+test = "pytest"

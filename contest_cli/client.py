@@ -1,7 +1,7 @@
 """api request client"""
 
-import requests
 import sys
+import requests
 
 
 class Client:

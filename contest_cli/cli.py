@@ -1,4 +1,6 @@
 """parse command line arguments"""
+# pylint: disable=W0622
+# pylint: disable=no-value-for-parameter
 
 import click
 from contest_cli.client import Client

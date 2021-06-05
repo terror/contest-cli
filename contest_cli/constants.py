@@ -1,3 +1,5 @@
+"""all constants"""
+
 SITES = {
     "leetcode": "leet_code",
     "codeforcesgym": "codeforces_gym",

@@ -1,11 +1,11 @@
 """all display related logic"""
 
+from typing import List
 from rich.console import Console
 from rich.table import Table
 from rich.text import Text
 from contest_cli.constants import COL
 from contest_cli.utils import Utils
-from typing import List
 
 
 class Display:
