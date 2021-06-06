@@ -9,10 +9,10 @@ contest-cli = {editable = true, path = "."}
 requests    = "*"
 
 [dev-packages]
-black  = "*"
 pylint = "*"
 pytest = "*"
 twine  = "*"
+yapf   = "*"
 
 [requires]
 python_version = "3.8"

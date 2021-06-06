@@ -6,7 +6,7 @@
 </p>
 
 ## Demo
-[![asciicast](https://asciinema.org/a/VrB0t8M4knRjVfEr4lUPf8oSv.svg)](https://asciinema.org/a/VrB0t8M4knRjVfEr4lUPf8oSv)
+[![asciicast](https://asciinema.org/a/a6eIilXEe1KCVZMsYfeCDB0UD.svg)](https://asciinema.org/a/a6eIilXEe1KCVZMsYfeCDB0UD)
 
 ## Installation
 

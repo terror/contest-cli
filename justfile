@@ -7,7 +7,7 @@ test:
   pytest .
 
 fmt:
-  black . --exclude tests
+  yapf --in-place --recursive --style="{indent_width: 2}" **/*.py
 
 build:
   python3 setup.py sdist

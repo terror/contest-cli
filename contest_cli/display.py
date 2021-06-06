@@ -1,6 +1,7 @@
 """all display related logic"""
 
 from typing import List
+import click
 from rich.console import Console
 from rich.table import Table
 from rich.text import Text
@@ -9,39 +10,45 @@ from contest_cli.utils import Utils
 
 
 class Display:
-    """displays information to the terminal"""
+  """displays information to the terminal"""
 
-    @staticmethod
-    def site(data: List[dict]):
-        """displays a single contest websites information"""
-        console = Console()
+  @staticmethod
+  def site(data: List[dict]):
+    """displays a single contest websites information"""
 
-        table = Table(show_header=True, header_style="green")
+    if len(data) == 0:
+      click.secho("No upcoming contests!")
+      return
 
-        for col in COL:
-            table.add_column(col)
+    console = Console()
 
-        for piece in data:
-            table.add_row(
-                piece["name"],
-                Text(Utils.url(piece["url"]), style=f'link {piece["url"]}'),
-                Utils.convert_date(piece["start_time"][:-1]),
-                Utils.convert_date(piece["end_time"][:-1]),
-                Utils.duration(int(piece["duration"])),
-            )
+    table = Table(show_header=True, header_style="green")
 
-        console.print(table)
+    for col in COL:
+      table.add_column(col)
 
-    @staticmethod
-    def list(sites: List[str]):
-        """displays a list of supported contest websites"""
-        console = Console()
+    for piece in data:
+      table.add_row(
+          piece["name"],
+          Text(Utils.url(piece["url"]), style=f'link {piece["url"]}') or "N/A",
+          Utils.convert_date(piece["start_time"][:-1]),
+          Utils.convert_date(piece["end_time"][:-1]),
+          Utils.duration(float(piece["duration"])),
+      )
 
-        table = Table(show_header=True, header_style="green")
+    console.print(table)
 
-        table.add_column("Supported Sites", width=15)
+  @staticmethod
+  def list(sites: List[str]):
+    """displays a list of supported contest websites"""
 
-        for site in sites:
-            table.add_row(site)
+    console = Console()
 
-        console.print(table)
+    table = Table(show_header=True, header_style="green")
+
+    table.add_column("Supported Sites", width=15)
+
+    for site in sites:
+      table.add_row(site)
+
+    console.print(table)

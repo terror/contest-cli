@@ -1,14 +1,12 @@
 import os
 from setuptools import setup, find_packages
 
-
 def read(fname):
-    return open(os.path.join(os.path.dirname(__file__), fname)).read()
-
+  return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 setup(
     name="contest_cli",
-    version="0.0.1",
+    version="0.0.2",
     author="Liam Scalzulli",
     author_email="liamscalzulli@gmail.com",
     description=("Programming contest information for those who live in the terminal"),
@@ -24,7 +22,7 @@ setup(
         "Topic :: Utilities",
         "License :: OSI Approved :: MIT License",
     ],
-    install_requires=["rich"],
+    install_requires=["rich", "requests"],
     entry_points={"console_scripts": ["contest_cli = contest_cli.cli:cli"]},
     python_requires=">=3.7",
 )
